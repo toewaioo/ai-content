@@ -9,6 +9,8 @@ export interface GeneratedContent {
   /** Suggested hashtags for the post */
   hashtags: string[];
   image_prompt: string;
+  /** English summary of facts used in the generation to prevent future repetition */
+  generated_facts: string[];
 }
 
 /**
@@ -17,8 +19,7 @@ export interface GeneratedContent {
  */
 export interface IGenerativeAiService {
   /**
-   * Generates content by selecting a random scientific/tech field,
-   * researching the latest news via web search, and synthesizing a post.
+   * Generates content.
    * @returns Structured content ready for publishing
    */
   generateContent(): Promise<GeneratedContent>;

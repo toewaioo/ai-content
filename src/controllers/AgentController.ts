@@ -41,19 +41,8 @@ export class AgentController {
    * Formats the generated content into a Telegram-ready Markdown message.
    */
   private formatMessage(topic: string, content: string, hashtags: string[], image_prompt: string): string {
-    const hashtagLine = hashtags.map((tag) => (tag.startsWith('#') ? tag : `#${tag}`)).join(' ');
-
-    return [
-      `🔬 *${topic}*`,
-      ``,
-      content,
-      ``,
-      `───────────────`,
-      hashtagLine,
-      `───────────────`,
-      image_prompt,
-      ``,
-      `🤖 _Powered by AI Content Agent_`,
-    ].join('\n');
+    // The GeminiService now formats the content exactly as required.
+    // Return it without any additional wrapping.
+    return content;
   }
 }

@@ -7,6 +7,8 @@ export interface EnvConfig {
   telegramBotToken: string;
   telegramChatId: string;
   cronSecret: string;
+  supabaseUrl: string;
+  supabaseKey: string;
 }
 
 function requireEnv(name: string, fallback?: string): string {
@@ -30,5 +32,7 @@ export function loadEnvConfig(): EnvConfig {
     telegramBotToken: requireEnv('TELEGRAM_BOT_TOKEN'),
     telegramChatId: requireEnv('TELEGRAM_CHAT_ID'),
     cronSecret: requireEnv('CRON_SECRET'),
+    supabaseUrl: requireEnv('SUPABASE_URL'),
+    supabaseKey: requireEnv('SUPABASE_KEY'),
   };
 }

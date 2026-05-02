@@ -1,10 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { loadEnvConfig } from '../src/config/env';
 import { GeminiService } from '../src/services/GeminiService';
-import { GoogleNewsRssService } from '../src/services/NewsService';
+import { SupabaseService } from '../src/services/SupabaseService';
 import { TelegramService } from '../src/services/TelegramService';
 import { AgentController } from '../src/controllers/AgentController';
-
 
 /**
  * Vercel Serverless Function — entry point for the AI Content Agent.
@@ -35,10 +34,11 @@ export default async function handler(
     // ─── Composition Root (Dependency Injection) ────────────────
     const config = loadEnvConfig();
 
-    const newsService = new GoogleNewsRssService();
+    const dbService = new SupabaseService(config.supabaseUrl, config.supabaseKey);
+
     // Select a random API key to distribute the load across multiple free tier keys
     const randomKey = config.geminiApiKeys[Math.floor(Math.random() * config.geminiApiKeys.length)];
-    const geminiService = new GeminiService(randomKey, newsService);
+    const geminiService = new GeminiService(randomKey, dbService);
     const telegramService = new TelegramService(
       config.telegramBotToken,
       config.telegramChatId

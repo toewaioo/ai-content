@@ -5,10 +5,6 @@
     {
       "path": "/api/trigger?token=CRON_SECRET_123",
       "schedule": "30 22 * * *"
-    },
-    {
-      "path": "/api/trigger?token=CRON_SECRET_123",
-      "schedule": "30 10 * * *"
     }
   ]
 }
