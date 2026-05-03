@@ -4,7 +4,7 @@
   "crons": [
     {
       "path": "/api/trigger?token=CRON_SECRET_123",
-      "schedule": "30 22 * * *"
+      "schedule": "30 24 * * *"
     }
   ]
 }
